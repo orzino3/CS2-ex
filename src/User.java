@@ -6,6 +6,9 @@ public class User {
     private boolean realtor;
     private int postCount;
 
+    final private int MINIMUM_LENGTH_FOR_PASSWORD = 5;
+    final private int MAX_LENGTH_PHONE_NUMBER = 10;
+
     private Property[] postedProperties;
 
     public User() {//O(1)
@@ -50,13 +53,16 @@ public class User {
     }
 
     public boolean setRealtor(String input) {//O(1)
+        if(!input.equalsIgnoreCase("y") && !input.equalsIgnoreCase("n")){
+            System.out.println("You entered wrong char. This user will set as Regular");
+        }
         return realtor = input.equalsIgnoreCase("Y") ? true : false;
     }
 
     public boolean isStrongPassword(String password) {//O(1)
         boolean isStrong = false;
 
-        if (password.length() >= 5) {
+        if (password.length() >= MINIMUM_LENGTH_FOR_PASSWORD) {
             if (password.contains("0") || password.contains("1") || password.contains("2") || password.contains("3") ||
                     password.contains("4") || password.contains("5") || password.contains("6") || password.contains("7") ||
                     password.contains("8") || password.contains("9")) {
@@ -72,7 +78,7 @@ public class User {
         boolean isValid = false;
         int count = 0;
 
-        if (phoneNumber.length() == 10) {
+        if (phoneNumber.length() == MAX_LENGTH_PHONE_NUMBER) {
             if (phoneNumber.startsWith("05")) {
                 for (int i = 2; i < phoneNumber.length(); i++) {
                     if (phoneNumber.charAt(i) == '0' || phoneNumber.charAt(i) == '1' || phoneNumber.charAt(i) == '2' ||
