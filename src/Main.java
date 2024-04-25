@@ -72,7 +72,7 @@ public class Main {//O(n^2)
         }
     }
 
-    public static void printMainMenu() {
+    public static void printMainMenu() { //O(1)
 
         System.out.println("1 - Create account");
         System.out.println("2 - Log in to existing account");
@@ -80,7 +80,7 @@ public class Main {//O(n^2)
 
     }
 
-    public static void printSecondaryMenu() {
+    public static void printSecondaryMenu() { //O(1)
 
         System.out.println("1 - Post new property");
         System.out.println("2 - Remove property post");
