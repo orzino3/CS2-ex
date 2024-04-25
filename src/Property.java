@@ -35,14 +35,14 @@ public class Property {
         this.user = user;
     }
 
-    public int getRoomCapacity() {//O(1)
+    public int getRoomCapacity() {
         return roomCapacity;
-    }
+    }//O(1)
 
 
-    public int getPrice() {//O(1)
+    public int getPrice() {
         return price;
-    }
+    }//O(1)
 
 
     public String getType() {//O(1)
@@ -54,9 +54,9 @@ public class Property {
     }
 
 
-    public User getUser() {//O(1)
+    public User getUser() {
         return user;
-    }
+    }//O(1)
 
     public String toString() {//O(1)
         return this.city + " - " + this.street + " " + this.houseNumber + "\n" + this.type + " - for " + this.status + ": " + this.roomCapacity + " rooms, floor " + this.floorNumber + ".\nprice: " + this.price + "$.\n"
