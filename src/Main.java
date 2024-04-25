@@ -61,7 +61,8 @@ public class Main {//O(n^2)
                                 case 5 -> {
                                     Property[] filtered = realEstate.search();
                                     for (int i = 0; i < filtered.length; i++) {
-                                        System.out.println(filtered[i]);
+                                        System.out.println("\n["+i+"]\n");
+                                        System.out.println(filtered[i]+"\n");
                                     }
                                 }
                             }
@@ -72,7 +73,7 @@ public class Main {//O(n^2)
         }
     }
 
-    public static void printMainMenu() { //O(1)
+    public static void printMainMenu() {
 
         System.out.println("1 - Create account");
         System.out.println("2 - Log in to existing account");
@@ -80,7 +81,7 @@ public class Main {//O(n^2)
 
     }
 
-    public static void printSecondaryMenu() { //O(1)
+    public static void printSecondaryMenu() {
 
         System.out.println("1 - Post new property");
         System.out.println("2 - Remove property post");
