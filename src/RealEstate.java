@@ -51,7 +51,7 @@ public class RealEstate {
 
 
         while (!user.isValidPhone(user.setPhoneNumber(input))) {
-            System.out.println("Phone not met conditions");
+            System.out.println("Phone not met conditions. Please re-enter phone number");
             input = user.setPhoneNumber(scanner.nextLine());
         }
         //-------------------------קלט מתווך-------------------------
@@ -250,21 +250,20 @@ public class RealEstate {
     }
 
     public Property[] search() {//O(n)
-        Scanner scanner = new Scanner(System.in);
         System.out.println("DataBase property search:\n\n" +
                 "Please enter your preferences. If you don't want to filter any characteristic, enter -999.\n");
 
-        System.out.println("Enter Sale or Rent (Letter case doesn't matter");
-        String status = scanner.nextLine();
+        System.out.println("Enter Sale or Rent (Letter case doesn't matter)");
+        String status = new Scanner(System.in).nextLine();
         System.out.println("What kind of property you are looking for? (Regular/Penthouse/Private)");
-        String type = scanner.nextLine();
+        String type = new Scanner(System.in).nextLine();
         System.out.println("Room Capacity?");
-        int roomCapacity = scanner.nextInt();
+        int roomCapacity = new Scanner(System.in).nextInt();
         System.out.println("What is your price range?");
         System.out.println("Minimum:");
-        double min = scanner.nextDouble();
+        double min = new Scanner(System.in).nextDouble();
         System.out.println("Maximum:");
-        double max = scanner.nextDouble();
+        double max = new Scanner(System.in).nextDouble();
         Property[] filtered = this.properties;
         if (!status.equals(String.valueOf(NULL_VALUE))) {
             filtered = this.searchStatus(properties, status);
