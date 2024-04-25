@@ -19,7 +19,6 @@ public class RealEstate {
             cities[i] = new City(i);
         }
     }
-
     public void createUser() {//O(n)
         //--------------------------הגדרת משתנים------------------------
         Scanner scanner = new Scanner(System.in);
@@ -266,92 +265,92 @@ public class RealEstate {
         double min = scanner.nextDouble();
         System.out.println("Maximum:");
         double max = scanner.nextDouble();
-        Property[] properties = this.properties;
+        Property[] filtered = this.properties;
         if (!status.equals(String.valueOf(NULL_VALUE))) {
-            properties = this.searchRent(properties, status);
+            filtered = this.searchStatus(properties, status);
         }
         if (!type.equals(String.valueOf(NULL_VALUE))) {
-            properties = this.searchType(properties, type);
+            filtered = this.searchType(properties, type);
         }
         if (roomCapacity != NULL_VALUE) {
-            properties = this.searchRooms(properties, roomCapacity);
+            filtered = this.searchRoomCapacity(properties, roomCapacity);
         }
         if (max != NULL_VALUE && min != NULL_VALUE) {
-            properties = this.searchPrice(properties, min, max);
+            filtered = this.searchPrice(properties, min, max);
         }
-        return properties;
+        return filtered;
     }
 
-    public Property[] searchRent(Property[] properties, String status) {//O(n)
+    public Property[] searchStatus(Property[] toFilter, String status) {//O(n)
         int count = 0;
-        for (int i = 0; i < properties.length; i++) {
-            if (properties[i].getStatus().equalsIgnoreCase(status)) {
+        for (int i = 0; i < toFilter.length; i++) {
+            if (toFilter[i].getStatus().equalsIgnoreCase(status)) {
                 count++;
             }
         }
-        Property[] properties1 = new Property[count];
-        int j = 0;
-        for (int i = 0; i < properties.length; i++) {
-            if (properties[i].getStatus().equalsIgnoreCase(status)) {
-                properties1[j] = properties[i];
+        Property[] filtered = new Property[count];
+
+        for (int i = 0,j = 0; i < toFilter.length; i++) {
+            if (toFilter[i].getStatus().equalsIgnoreCase(status)) {
+                filtered[j] = toFilter[i];
                 j++;
             }
         }
-        return properties1;
+        return filtered;
     }
 
-    public Property[] searchType(Property[] properties, String type) {//O(n)
+    public Property[] searchType(Property[] toFilter, String type) {//O(n)
         int count = 0;
-        for (int i = 0; i < properties.length; i++) {
-            if (properties[i].getType().equalsIgnoreCase(type)) {
+        for (int i = 0; i < toFilter.length; i++) {
+            if (toFilter[i].getType().equalsIgnoreCase(type)) {
                 count++;
             }
         }
-        Property[] properties1 = new Property[count];
-        int j = 0;
-        for (int i = 0; i < properties.length; i++) {
-            if (properties[i].getType().equalsIgnoreCase(type)) {
-                properties1[j] = properties[i];
+        Property[] filtered = new Property[count];
+
+        for (int i = 0,j = 0; i < toFilter.length; i++) {
+            if (toFilter[i].getType().equalsIgnoreCase(type)) {
+                filtered[j] = toFilter[i];
                 j++;
             }
         }
-        return properties1;
+        return filtered;
     }
 
-    public Property[] searchRooms(Property[] properties, int roomCapacity) {//O(n)
+    public Property[] searchRoomCapacity(Property[] toFilter, int roomCapacity) {//O(n)
         int count = 0;
-        for (int i = 0; i < properties.length; i++) {
-            if (properties[i].getRoomCapacity() == roomCapacity) {
+        for (int i = 0; i < toFilter.length; i++) {
+            if (toFilter[i].getRoomCapacity() == roomCapacity) {
                 count++;
             }
         }
-        Property[] properties1 = new Property[count];
+        Property[] filtered = new Property[count];
         int j = 0;
-        for (int i = 0; i < properties.length; i++) {
-            if (properties[i].getRoomCapacity() == roomCapacity) {
-                properties1[j] = properties[i];
+        for (int i = 0; i < toFilter.length; i++) {
+            if (toFilter[i].getRoomCapacity() == roomCapacity) {
+                filtered[j] = toFilter[i];
                 j++;
             }
         }
-        return properties1;
+        return filtered;
     }
 
-    public Property[] searchPrice(Property[] properties, double min, double max) {//O(n)
+    public Property[] searchPrice(Property[] toFilter, double min, double max) {//O(n)
         int count = 0;
-        for (int i = 0; i < properties.length; i++) {
-            if (properties[i].getPrice() >= min && properties[i].getPrice() <= max) {
+        for (int i = 0; i < toFilter.length; i++) {
+            if (toFilter[i].getPrice() >= min && toFilter[i].getPrice() <= max) {
                 count++;
             }
         }
-        Property[] properties1 = new Property[count];
-        int j = 0;
-        for (int i = 0; i < properties.length; i++) {
-            if (properties[i].getPrice() >= min && properties[i].getPrice() <= max) {
-                properties1[j] = properties[i];
+        Property[] filtered = new Property[count];
+
+        for (int i = 0,j = 0; i < toFilter.length; i++) {
+            if (toFilter[i].getPrice() >= min && toFilter[i].getPrice() <= max) {
+                filtered[j] = toFilter[i];
                 j++;
             }
         }
-        return properties1;
+        return filtered;
     }
 
     public int askFloor() {//O(1)
