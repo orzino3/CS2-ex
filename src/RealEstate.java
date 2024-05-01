@@ -103,7 +103,7 @@ public class RealEstate {
         int index = 0;
         String type;
 
-        if (!userHasLimit(user)) {
+        if (!this.userHasLimit(user)) {
             showCities();
         } else {
             System.out.println("You've reached your limit.\n");
@@ -149,13 +149,13 @@ public class RealEstate {
                 if (type.equals("1") || type.equals("2")) {
                     success = true;
                     Property toAdd = new Property(cities[index], input2, askFloor(), askRooms(), askPrice(), type, askStatus(), askAddressNum(), user);
-                    addProperty(toAdd);
+                    this.addProperty(toAdd);
                     user.addPostCount();
 
                 } else if (type.equals("3")) {
                     success = true;
                     Property toAdd = new Property(cities[index], input2, askRooms(), askPrice(), type, askStatus(), askAddressNum(), user);
-                    addProperty(toAdd);
+                    this.addProperty(toAdd);
                     user.addPostCount();
                 } else {
                     System.out.println("You've entered wrong input.\n");
@@ -211,7 +211,7 @@ public class RealEstate {
             this.printProperties(user);
             System.out.println("Please enter property number to remove");
             int choice = (new Scanner(System.in).nextInt()) /*- 1*/;
-            removeUserChoice(choice, user);
+            this.removeUserChoice(choice, user);
             user.subPostCount();
             System.out.println("\nProperty Removed Successfully!\n");
         } else {
@@ -266,28 +266,28 @@ public class RealEstate {
         double max = new Scanner(System.in).nextDouble();
         Property[] filtered = this.properties;
         if (!status.equals(String.valueOf(NULL_VALUE))) {
-            filtered = this.searchStatus(properties, status);
+            filtered = this.searchStatus(filtered, status);
         }
         if (!type.equals(String.valueOf(NULL_VALUE))) {
-            filtered = this.searchType(properties, type);
+            filtered = this.searchType(filtered, type);
         }
         if (roomCapacity != NULL_VALUE) {
-            filtered = this.searchRoomCapacity(properties, roomCapacity);
+            filtered = this.searchRoomCapacity(filtered, roomCapacity);
         }
         if (max != NULL_VALUE && min != NULL_VALUE) {
-            filtered = this.searchPrice(properties, min, max);
+            filtered = this.searchPrice(filtered, min, max);
         }
         return filtered;
     }
 
     public Property[] searchStatus(Property[] toFilter, String status) {//O(n)
-        int count = 0;
+        int size = 0;
         for (int i = 0; i < toFilter.length; i++) {
             if (toFilter[i].getStatus().equalsIgnoreCase(status)) {
-                count++;
+                size++;
             }
         }
-        Property[] filtered = new Property[count];
+        Property[] filtered = new Property[size];
 
         for (int i = 0,j = 0; i < toFilter.length; i++) {
             if (toFilter[i].getStatus().equalsIgnoreCase(status)) {
@@ -299,13 +299,13 @@ public class RealEstate {
     }
 
     public Property[] searchType(Property[] toFilter, String type) {//O(n)
-        int count = 0;
+        int size = 0;
         for (int i = 0; i < toFilter.length; i++) {
             if (toFilter[i].getType().equalsIgnoreCase(type)) {
-                count++;
+                size++;
             }
         }
-        Property[] filtered = new Property[count];
+        Property[] filtered = new Property[size];
 
         for (int i = 0,j = 0; i < toFilter.length; i++) {
             if (toFilter[i].getType().equalsIgnoreCase(type)) {
@@ -317,15 +317,14 @@ public class RealEstate {
     }
 
     public Property[] searchRoomCapacity(Property[] toFilter, int roomCapacity) {//O(n)
-        int count = 0;
+        int size = 0;
         for (int i = 0; i < toFilter.length; i++) {
             if (toFilter[i].getRoomCapacity() == roomCapacity) {
-                count++;
+                size++;
             }
         }
-        Property[] filtered = new Property[count];
-        int j = 0;
-        for (int i = 0; i < toFilter.length; i++) {
+        Property[] filtered = new Property[size];
+        for (int i = 0, j = 0; i < toFilter.length; i++) {
             if (toFilter[i].getRoomCapacity() == roomCapacity) {
                 filtered[j] = toFilter[i];
                 j++;
